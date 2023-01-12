@@ -1,0 +1,148 @@
+.cabecalho__menu-hamburguer{
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/Menu.svg") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+/*O botão ~ procura um elemento após o que o tio esta selecionado*/
+/*O botão > acessa a classe em que está apos do sinal, dentro do que esta antes do sinal*/
+/*Sendo assim, o exemplo abaixo, a programa ira buscar após o "container__botao:checked" uma classe com nome de "container__rotulo" e dentro dela ela acessa a classe"cabecalho__menu-hamburguer" */
+.container__botao:checked~.container__rotulo>.cabecalho__menu-hamburguer{
+    background-image: url(../img/Menu\ Aberto.png);
+}
+.container__botao:checked~.container__rotulo{
+    background: var(--azul-degrade);
+}
+.cabecalho{
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;/*Permite que o objeto se movimente */
+
+}
+.container{
+    display: flex ;
+    align-items:center;
+}
+.container__imagem{
+    padding: 1em;
+}
+.lista-menu{
+    display: none;
+    position: absolute;/*Permite que o objeto se desloque respeitando sempre outros que venham antes,ou os que possuem prioridades */
+    top: 100%; /* Está posicionado 100% abaixo do cabeçalho*/
+    width: 60vw;/*Porcentagem da fonte em relação ao viewport, 60=60% */
+}
+/*Se o container__ botao estiver checked ele irá atrás da lista menu e acionará a função block nela*/
+.container__botao:checked ~.lista-menu{
+    display: block;
+}
+.lista-menu__titulo, .lista-menu__item{
+    padding: 1em;
+    background-color: var(--branco);
+}
+.lista-menu__titulo{
+    /*Para mudar cor da fonte usa-se color*/
+    color: var(--laranja);
+    font: weight 700px; 
+    
+}
+.lista-menu__link{
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+}
+.container__botao{
+    display:none;
+}
+.container__titulo{
+    display: none;
+}
+
+.opçoes{
+    display: none;
+}
+.container__texto{
+    display: none;
+}
+/*--------------------------------------Layout 1024px-------------------------------------------------------------------*/
+/*Media Query = estiloss aplicados em determinados grupos de tela */
+@media screen and (min-width:1024px) {
+    .container__titulo, .container__titulo--negrito {
+        font-family: var( --fonte-secundaria);
+        font-size: 30px;
+    }    
+    .container__titulo{
+        font-weight: 400;
+        display: block;
+    }
+    .container__titulo--negrito{
+        font-weight: 700;
+    }
+    .opçoes{
+        display: flex;
+    }
+    .opçoes__item{
+        padding: 0 1em;
+        text-transform: uppercase;
+    }
+    .opçoes__link{
+        text-decoration: none;
+        color: var(--preto);
+    }
+    .container__imagem-transparente{
+    display: none;
+    }
+    .cabecalho__menu-hamburguer{
+        display: none;
+    }
+    /*Se o opções__botão estiver checked ou seja selecionado a lista-menu que é a lista dos adereços que vão aparecer será então ativada*/
+    .opções__botao:checked ~ .lista-menu{
+        display: block;
+        width: auto;
+        color: var(--azul-degrade);
+    }
+    /*Retira o quadrado de checked da parte das categorias*/
+    .opções__botao{
+        display: none;
+    }
+    .opções__botao:checked~.opçoes__rotulo>.opçoes__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .opçoes__item{
+        padding: 2em 1em;
+    }
+
+    
+}
+
+/*-----------------------------------------------------------Layout 1728--------------------------------------*/
+
+@media screen and (min-width:1728px){
+
+    .container__link{
+        display: flex;
+        /*Esse atributo abaixo só é capaz de ser utilizado por meio de um flexbox*/
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+    .cabecalho{
+        padding: 0 2em;
+    }
+    .opçoes{
+        /*ao aplicar margin-right: auto, significa que irá botar toda a margen para a esquerda pois ele preencherá toda a parte em branco*/
+        margin-right: auto;
+    }
+    .container__texto{
+        display: block;
+    }
+    
+}
